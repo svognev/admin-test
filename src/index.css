@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,900;1,100;1,400;1,900&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Roboto', monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --background-primary: #141414;
+--background-secondary: #1e1c1c;
+--background-3: #282828;
+--background-4: #0a0a0a;
+--background-black: #000;
+--background-scroll: #302e2e;
+--background-thumb: #5f5d5d;
+--text-primary: #fff;
+--text-secondary: #939393;
+--text-3: #ebebeb;
+--text-4: #dadada;
+--accent: #ffbb42;
+--opinions: #7aefff;
+--translation: #438afc;
+--factchecking: #ff4a4a;
+--merchandise: #ff9898;
+--test: #bcaeff;
+--thread: #f7931a;
+--notification-badge: red;
+--live: #ff2323;
+--footer-link-text: #8f8f8f;
+--brand-tor-1: #593169;
+--brand-tor-2: #7d4696;
+--brand-vpn-1: #e53031;
+--brand-vpn-2: #f0ede6;
+--footer-background: #1e1c1c;
+--link-news: #ffbb42;
+--link-opinion: #3bcce0;
+--link-factchecking: #ff4a4a;
+--link-factchecking-text-decoration: rgba(255,74,74,.5);
+--link-thread: var(--thread);
+--link-thread-text-decoration: #f7931a80;
+--link-test: #a190ed;
+--test-correct-background: #83bd671f;
+--test-correct-text: #83bd67;
+--test-correct-text-link: rgba(131,189,103,.5);
+--test-wrong-background: rgba(255,74,74,.12);
+--test-wrong-text: #ff4a4a;
+--test-wrong-text-link: rgba(255,74,74,.5);
+--selection-background: rgba(255,187,66,.27);
+--jobs-item-background: #fff9ee;
+--news-minimal: #ffc866;
+}
+
