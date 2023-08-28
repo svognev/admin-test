@@ -1,5 +1,5 @@
 export const MainPageStates = Object.freeze({
-  MESSAGES: "MESSAGES",
+  DONATIONS: "DONATIONS",
   SETTINGS: "SETTINGS",
   TOKENS: "TOKENS",
 });

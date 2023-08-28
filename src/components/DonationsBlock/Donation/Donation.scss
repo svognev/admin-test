@@ -1,4 +1,4 @@
-.message {
+.donation {
   background: #302e2e;
   border-radius: 10px;
   margin-bottom: 15px;
@@ -17,21 +17,21 @@
     background: #212e21;
   }
   
-  .message-title {
+  .donation-title {
     display: flex;
 
-    .message-author {
+    .donation-author {
       margin-right: 10px;
       font-size: 20px;
       margin-top: 0;
     }
 
-    .message-amount {
+    .donation-amount {
       margin-top: -1px;
     }
   }
 
-  .message-date {
+  .donation-date {
     margin: 0;
     padding: 0;
     text-align: left;
@@ -40,11 +40,11 @@
     font-size: 14px;
   }  
 
-  .message-text {
+  .donation-text {
     font-weight: 400;
   }
 
-  .message-buttons {
+  .donation-buttons {
     display: flex;
     flex-direction: column;
 

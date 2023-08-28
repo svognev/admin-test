@@ -1,10 +1,10 @@
 import useCustomReducer from "common/useCustomReducer.js";
 import { MainPageStates } from "components/MainPage/MainPage.constants.js"
 
-const mainPageReducer = (newState, action) => {
+const mainPageReducer = (prevState, action) => {
   switch (action.type) {
-    case MainPageStates.MESSAGES: {
-      return MainPageStates.MESSAGES;
+    case MainPageStates.DONATIONS: {
+      return MainPageStates.DONATIONS;
     }
     case MainPageStates.SETTINGS: {
       return MainPageStates.SETTINGS;
@@ -19,14 +19,13 @@ const mainPageReducer = (newState, action) => {
 }
 
 const handlers = {
-  switchToMessages: (dispatch) => () => {
+  switchToDonations: (dispatch) => () => {
     dispatch({
-      type: MainPageStates.MESSAGES,
+      type: MainPageStates.DONATIONS,
     });
   },
 
   switchToSettings: (dispatch) => () => {
-    console.warn(122);
     dispatch({
       type: MainPageStates.SETTINGS,
     });
@@ -39,7 +38,7 @@ const handlers = {
   }
 };
 
-const initialState = MainPageStates.MESSAGES;
+const initialState = MainPageStates.DONATIONS;
 
 const useMainPageState = () => useCustomReducer(mainPageReducer, handlers, initialState);
 

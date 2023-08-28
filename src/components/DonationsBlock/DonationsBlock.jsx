@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { isMobile } from 'react-device-detect';
+
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Snackbar from '@mui/material/Snackbar';
@@ -8,31 +9,45 @@ import ReportGmailerrorredIcon from '@mui/icons-material/ReportGmailerrorred';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-import { MessageFolders } from "components/MessagesBlock/MessagesBlock.constants";
-import Message from "components/MessagesBlock/Message/Message";
+import { DonationFolders } from "components/DonationsBlock/DonationsBlock.constants";
+import Donation from "components/DonationsBlock/Donation/Donation";
+import DonationService from "services/DonationService"
 
-import "./MessagesBlock.scss"
+import "./DonationsBlock.scss";
 
-export default function MessagesBlock({ state, handlers }) {
-  const { 
-    moveToReadingAsVerified,
-    moveToReadingAsWarned,
-    markAsRead,
-    moveToArchive,
-    returnFromArchive,
-  } = handlers;
+const { NEW, READING, ARCHIVED } = DonationFolders;
 
-  const { VERIFICATION, READING, ARCHIVE } = MessageFolders;
+export default function DonationsBlock({ state, handlers: reducerHandlers }) {
+  const moveToReadingAsVerified = async(id) => {
+    const result = await DonationService.moveToReading(id);
+    if (result) reducerHandlers.moveToReadingAsVerified(id);
+  };
 
+  const moveToReadingAsWarned = async(id) => {
+    const result = await DonationService.moveToReading(id, true);
+    if (result) reducerHandlers.moveToReadingAsWarned(id);
+  };
+  
+  const moveToArchive = async(id) => {
+    const result = await DonationService.moveToArchive(id);
+    if (result) reducerHandlers.moveToArchive(id);
+  };
+  
+  const returnFromArchive = async(id) => {
+    const result = await DonationService.returnFromArchive(id);
+    if (result) reducerHandlers.returnFromArchive(id);
+  };
+  
   const [isSuccessAlertOpen, setSuccessAlertOpen] = useState(false);
-  const [folder, setFolder] = useState(VERIFICATION);
+  const [folder, setFolder] = useState(NEW);
 
-  const moveToNextFolder = () => {
-    const nextFolder = folder === VERIFICATION ? READING : folder === READING ? ARCHIVE : VERIFICATION;
+  const showNextFolder = () => {
+    const nextFolder = folder === NEW ? READING : folder === READING ? ARCHIVED : NEW;
     setFolder(nextFolder);
   };
-  const moveToPreviousFolder = () => {
-    const previousFolder = folder === VERIFICATION ? ARCHIVE : folder === READING ? VERIFICATION : READING;
+
+  const showPreviousFolder = () => {
+    const previousFolder = folder === NEW ? ARCHIVED : folder === READING ? NEW : READING;
     setFolder(previousFolder);
   };
 
@@ -47,12 +62,11 @@ export default function MessagesBlock({ state, handlers }) {
   const showOnDisplay = (id) => async () => {
     await new Promise(res => setTimeout(() => res(), 600));
     openSuccessAlert();
-    markAsRead(id);
   };
 
-  const messagesToVerify = state.filter(el => el.folder === VERIFICATION)
+  const donationsToVerify = state.filter(el => el.status === NEW)
     .map(({ id, ...props}) => (
-      <Message key={id} {...props}>
+      <Donation key={id} {...props}>
         <Button 
           onClick={() => moveToReadingAsWarned(id)}
           variant="outlined" 
@@ -69,12 +83,12 @@ export default function MessagesBlock({ state, handlers }) {
         >
           Send as verified
         </Button>
-      </Message>
+      </Donation>
     ));
   
-  const messagesToRead = state.filter(el => el.folder === READING)
+  const donationsToRead = state.filter(el => el.status === READING)
     .map(({ id, ...props}) => (
-      <Message key={id} {...props}>
+      <Donation key={id} {...props}>
         <Button 
           onClick={showOnDisplay(id)}
           variant="outlined" 
@@ -91,12 +105,12 @@ export default function MessagesBlock({ state, handlers }) {
         >
           Move to archive
         </Button>
-      </Message>
+      </Donation>
     ));
 
-  const archivedMessages = state.filter(el => el.folder === ARCHIVE)
+  const archivedDonations = state.filter(el => el.status === ARCHIVED)
     .map(({ id, ...props}) => (
-      <Message key={id} {...props}>
+      <Donation key={id} {...props}>
         <Button 
           onClick={showOnDisplay(id)}
           variant="outlined" 
@@ -113,59 +127,59 @@ export default function MessagesBlock({ state, handlers }) {
         >
           Return to reading
         </Button>
-      </Message>
+      </Donation>
     ));
 
   return (
-    <div className="messagesBlock">
-      <div className="messageBlock-arrows">
+    <div className="donationsBlock">
+      <div className="donationBlock-arrows">
         <IconButton
-          onClick={moveToPreviousFolder}
+          onClick={showPreviousFolder}
           color="gainsboro"
         >
           <ArrowBackIcon />
         </IconButton>
         <IconButton
-          onClick={moveToNextFolder}
+          onClick={showNextFolder}
           color="gainsboro"
         >
           <ArrowForwardIcon />
         </IconButton>
       </div>
-      { !isMobile || folder === VERIFICATION ? (
-          <div className="messagesCol">
-            <h3 className="messagesCol-title">Unverified</h3>
-            <div className="messagesCol-messages">
-              { messagesToVerify }
+      { !isMobile || folder === NEW ? (
+          <div className="donationsCol">
+            <h3 className="donationsCol-title">Unverified</h3>
+            <div className="donationsCol-donations">
+              { donationsToVerify }
             </div>
           </div>
         ) : ("")
       }
       { !isMobile || folder === READING ? (
-          <div className="messagesCol">
-            <h3 className="messagesCol-title">Reading</h3>
-            <div className="messagesCol-messages">
-              { messagesToRead }
+          <div className="donationsCol">
+            <h3 className="donationsCol-title">Reading</h3>
+            <div className="donationsCol-donations">
+              { donationsToRead }
             </div>
           </div>
         ) : ("")
       }
       
-      { !isMobile || folder === ARCHIVE ? (
-          <div className="messagesCol">
-            <h3 className="messagesCol-title">Archived</h3>
-            <div className="messagesCol-messages">
-              { archivedMessages }
+      { !isMobile || folder === ARCHIVED ? (
+          <div className="donationsCol">
+            <h3 className="donationsCol-title">Archived</h3>
+            <div className="donationsCol-donations">
+              { archivedDonations }
             </div>
           </div>
         ) : ("")
       }
-      <div className="messagesAlert">
+      <div className="donationsAlert">
         <Snackbar
           anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
           open={isSuccessAlertOpen}
           onClose={closeSuccessAlert}
-          message="Success!"
+          donation="Success!"
           color="green"
           autoHideDuration="800"
         />
