@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import { isMobile } from 'react-device-detect';
+import { useState } from "react";
+import { isMobile } from "react-device-detect";
 
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import Snackbar from '@mui/material/Snackbar';
-import CastConnectedIcon from '@mui/icons-material/CastConnected';
-import ReportGmailerrorredIcon from '@mui/icons-material/ReportGmailerrorred';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Button from "@mui/material/Button";
+import IconButton from "@mui/material/IconButton";
+import Snackbar from "@mui/material/Snackbar";
+import CastConnectedIcon from "@mui/icons-material/CastConnected";
+import ReportGmailerrorredIcon from "@mui/icons-material/ReportGmailerrorred";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 import { DonationFolders } from "components/DonationsBlock/DonationsBlock.constants";
 import Donation from "components/DonationsBlock/Donation/Donation";

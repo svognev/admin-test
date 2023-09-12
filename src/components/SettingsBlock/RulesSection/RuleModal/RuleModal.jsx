@@ -1,12 +1,12 @@
 import { useRef, useState, useEffect } from "react";
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import MenuItem from '@mui/material/MenuItem';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import MenuItem from "@mui/material/MenuItem";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
 
 import { ANIMATION_OPTIONS } from "components/SettingsBlock/SettingsBlock.constants";
 import Modal from "components/Modal";
@@ -49,16 +49,15 @@ export default function RuleModal({ isOpen, values, close, submit }) {
       setIsErrorsEnabled(true);
     } else {
       const result = await submit(form, values?.id || null);
-      console.log(11, result)
+
       if (result) {
-        console.log(12, result)
         onClose();
       }
     }
   };
   
   return (
-    <div className='ruleModal'>
+    <div className="ruleModal">
       <Modal open={isOpen} onClose={onClose}>
         <DialogTitle>{modalTitle}</DialogTitle>
         <DialogContent>
@@ -70,7 +69,7 @@ export default function RuleModal({ isOpen, values, close, submit }) {
             label="Max limit"
             defaultValue={initialAmount}
             type="text"
-            inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+            inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
             fullWidth
             variant="standard"
           />

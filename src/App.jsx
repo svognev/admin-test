@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
-import { ThemeProvider } from '@mui/material/styles';
+import { ThemeProvider } from "@mui/material/styles";
+
 import TokenService from "services/TokenService";
 import GoalService from "services/GoalService";
 import RuleService from "services/RuleService";
 import DonationService from "services/DonationService";
 import MainPage from "components/MainPage";
-import theme from "./theme";
 import { TOKEN } from "constants/index";
 import useDonationsBlockState from "components/DonationsBlock/DonationsBlock.reducer";
+import theme from "./theme";
+
 import "./App.scss";
 
 export default function App() {
@@ -49,6 +51,7 @@ export default function App() {
     }
 
     loadAllData();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const errorPage = (<h1>Invalid token!</h1>);

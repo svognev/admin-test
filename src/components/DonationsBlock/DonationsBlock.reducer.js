@@ -22,7 +22,7 @@ const donationsBlockReducer = (state, action) => {
     }
 
     default: {
-      throw Error('Unknown action: ' + action.type);
+      throw Error("Unknown action: " + action.type);
     }
   }
 }

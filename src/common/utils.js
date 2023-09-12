@@ -1,4 +1,4 @@
-import { format } from 'date-fns-tz';
+import { format } from "date-fns-tz";
 
 export const formatDate = (utcString) => {
   const date = new Date(Date.parse(utcString));

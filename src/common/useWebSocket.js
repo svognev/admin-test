@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect } from "react";
 import { WS_URL, TOKEN } from "constants/index";
 
 const useWebSocket = (route, onMessage) => {

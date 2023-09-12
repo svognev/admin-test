@@ -13,7 +13,7 @@ const mainPageReducer = (prevState, action) => {
       return MainPageStates.TOKENS;
     }
     default: {
-      throw Error('Unknown action: ' + action.type);
+      throw Error("Unknown action: " + action.type);
     }
   }
 }

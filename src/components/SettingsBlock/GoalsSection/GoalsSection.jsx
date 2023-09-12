@@ -1,4 +1,4 @@
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import { useState } from "react";
 
 import GoalService from "services/GoalService";
@@ -58,21 +58,21 @@ export default function GoalsSection({ goals, setGoals }) {
 
   const goalsComponents = goals.map(goal => (
     <div className="settingsItem settingsItem_goal" key={goal.id}>
-      <div className='settingsItem-info'>
-        <div className='settingsItem-labels'>
+      <div className="settingsItem-info">
+        <div className="settingsItem-labels">
           <p>Name:</p>
           <p>Max limit:</p>
           <p>Current:</p>
           <p>Style:</p>
         </div>
-        <div className='settingsItem-values'>
+        <div className="settingsItem-values">
           <p>{goal.name}</p>
           <p>{parseInt(goal.max_limit)}</p>
           <p>{parseInt(goal.current)}</p>
           <p>{goal.style || DEFAULT_GOAL_STYLE_NAME}</p>
         </div>
       </div>
-      <div className='settingsItem-editButton'>
+      <div className="settingsItem-editButton">
         <Button 
           onClick={() => openGoalModal(goal)}
           variant="outlined" 
@@ -81,7 +81,7 @@ export default function GoalsSection({ goals, setGoals }) {
           Edit goal
         </Button>
       </div>
-      <div className='settingsItem-removeButton'>
+      <div className="settingsItem-removeButton">
         <Button 
           onClick={() => removeGoal(goal.id)}
           disabled={hasLastGoal}

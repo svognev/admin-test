@@ -1,8 +1,8 @@
-import useMainPageState from 'components/MainPage/MainPage.reducer';
+import useMainPageState from "components/MainPage/MainPage.reducer";
 import { MainPageStates } from "components/MainPage/MainPage.constants.js";
-import DonationsBlock from 'components/DonationsBlock';
-import TokensBlock from 'components/TokensBlock';
-import SettingsBlock from 'components/SettingsBlock/SettingsBlock';
+import DonationsBlock from "components/DonationsBlock";
+import TokensBlock from "components/TokensBlock";
+import SettingsBlock from "components/SettingsBlock/SettingsBlock";
 
 import "./MainPage.scss";
 

@@ -1,6 +1,6 @@
-import dateFormat from "dateformat";
-import Chip from '@mui/material/Chip';
-import CurrencyRubleIcon from '@mui/icons-material/CurrencyRuble';
+import { formatDate } from "common/utils";
+import Chip from "@mui/material/Chip";
+import CurrencyRubleIcon from "@mui/icons-material/CurrencyRuble";
 
 import "./Donation.scss";
 
@@ -12,7 +12,7 @@ export default function Donation({
   created_at,
   is_good,
 }) {
-  const formattedDate = dateFormat(created_at, "dd.mm.yy hh:MM");
+  const formattedDate = formatDate(created_at);
   const donationClassname = `donation${is_good === false ? " donation_warn" : ""}`;
   const amount = parseInt(amount_in_rub);
 

@@ -1,10 +1,10 @@
 import { useRef, useState, useEffect } from "react";
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import MenuItem from '@mui/material/MenuItem';
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogTitle from "@mui/material/DialogTitle";
+import MenuItem from "@mui/material/MenuItem";
 
 import { 
   DEFAULT_GOAL_STYLE_VALUE,
@@ -51,16 +51,15 @@ export default function GoalModal({ isOpen, values, close, submit }) {
       setIsErrorsEnabled(true);
     } else {
       const result = await submit(form, values?.id || null);
-      console.log(11, result)
+
       if (result) {
-        console.log(12, result)
         onClose();
       }
     }
   };
   
   return (
-    <div className='goalModal'>
+    <div className="goalModal">
       <Modal open={isOpen} onClose={onClose}>
         <DialogTitle>{modalTitle}</DialogTitle>
         <DialogContent>
@@ -84,7 +83,7 @@ export default function GoalModal({ isOpen, values, close, submit }) {
             label="Max limit"
             defaultValue={initialMaxLimit}
             type="text"
-            inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
+            inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
             fullWidth
             variant="standard"
           />

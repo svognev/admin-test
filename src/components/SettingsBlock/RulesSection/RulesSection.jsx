@@ -1,8 +1,8 @@
-import Button from '@mui/material/Button';
+import Button from "@mui/material/Button";
 import { useState } from "react";
 
 import RuleService from "services/RuleService";
-import RuleModal from 'components/SettingsBlock/RulesSection/RuleModal';
+import RuleModal from "components/SettingsBlock/RulesSection/RuleModal";
 
 export default function RulesSection({ rules, setRules }) {
   const refreshRules = async () => {
@@ -53,19 +53,19 @@ export default function RulesSection({ rules, setRules }) {
 
   const rulesComponents = rules.map(rule => (
     <div className="settingsItem settingsItem_rule" key={rule.id}>
-      <div className='settingsItem-info'>
-        <div className='settingsItem-labels'>
+      <div className="settingsItem-info">
+        <div className="settingsItem-labels">
           <p>Amount:</p>
           <p>Is equal:</p>
           <p>Animation:</p>
         </div>
-        <div className='settingsItem-values'>
+        <div className="settingsItem-values">
           <p>{parseInt(rule.amount)}</p>
           <p>{rule.is_equal ? "Yes" : "No"}</p>
           <p>{rule.animation || ""}</p>
         </div>
       </div>
-      <div className='settingsItem-editButton'>
+      <div className="settingsItem-editButton">
         <Button 
           onClick={() => openRuleModal(rule)}
           variant="outlined" 
@@ -74,7 +74,7 @@ export default function RulesSection({ rules, setRules }) {
           Edit rule
         </Button>
       </div>
-      <div className='settingsItem-removeButton'>
+      <div className="settingsItem-removeButton">
         <Button 
           onClick={() => removeRule(rule.id)}
           variant="outlined"
