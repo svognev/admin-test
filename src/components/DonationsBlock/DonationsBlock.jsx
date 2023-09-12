@@ -11,33 +11,43 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import { DonationFolders } from "components/DonationsBlock/DonationsBlock.constants";
 import Donation from "components/DonationsBlock/Donation/Donation";
-import DonationService from "services/DonationService"
+import DonationService from "services/DonationService";
+import useWebSocket from "common/useWebSocket";
 
 import "./DonationsBlock.scss";
 
 const { NEW, READING, ARCHIVED } = DonationFolders;
 
 export default function DonationsBlock({ state, handlers: reducerHandlers }) {
+  
+  useWebSocket("new", (donation) => {
+    reducerHandlers.addNewDonation(donation);
+  });
+
+  useWebSocket("validate", (donation) => {
+    reducerHandlers.updateDonation(donation);
+  });
+
+  useWebSocket("read", (donation) => {
+    reducerHandlers.updateDonation(donation);
+  });
+
   const moveToReadingAsVerified = async(id) => {
-    const result = await DonationService.moveToReading(id);
-    if (result) reducerHandlers.moveToReadingAsVerified(id);
+    await DonationService.moveToReading(id);
   };
 
   const moveToReadingAsWarned = async(id) => {
-    const result = await DonationService.moveToReading(id, true);
-    if (result) reducerHandlers.moveToReadingAsWarned(id);
+    await DonationService.moveToReading(id, true);
   };
   
   const moveToArchive = async(id) => {
-    const result = await DonationService.moveToArchive(id);
-    if (result) reducerHandlers.moveToArchive(id);
+    await DonationService.moveToArchive(id);
   };
   
   const returnFromArchive = async(id) => {
-    const result = await DonationService.returnFromArchive(id);
-    if (result) reducerHandlers.returnFromArchive(id);
+    await DonationService.returnFromArchive(id);
   };
-  
+
   const [isSuccessAlertOpen, setSuccessAlertOpen] = useState(false);
   const [folder, setFolder] = useState(NEW);
 
@@ -60,11 +70,12 @@ export default function DonationsBlock({ state, handlers: reducerHandlers }) {
   };
 
   const showOnDisplay = (id) => async () => {
-    await new Promise(res => setTimeout(() => res(), 600));
+    await DonationService.resend(id);
     openSuccessAlert();
   };
 
   const donationsToVerify = state.filter(el => el.status === NEW)
+    .sort((a, b) => a.created_at < b.created_at ? -1 : 1)
     .map(({ id, ...props}) => (
       <Donation key={id} {...props}>
         <Button 
@@ -87,6 +98,7 @@ export default function DonationsBlock({ state, handlers: reducerHandlers }) {
     ));
   
   const donationsToRead = state.filter(el => el.status === READING)
+    .sort((a, b) => a.updated_at < b.updated_at ? -1 : 1)
     .map(({ id, ...props}) => (
       <Donation key={id} {...props}>
         <Button 
@@ -109,6 +121,7 @@ export default function DonationsBlock({ state, handlers: reducerHandlers }) {
     ));
 
   const archivedDonations = state.filter(el => el.status === ARCHIVED)
+    .sort((a, b) => a.updated_at < b.updated_at ? -1 : 1)
     .map(({ id, ...props}) => (
       <Donation key={id} {...props}>
         <Button 
@@ -179,7 +192,7 @@ export default function DonationsBlock({ state, handlers: reducerHandlers }) {
           anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
           open={isSuccessAlertOpen}
           onClose={closeSuccessAlert}
-          donation="Success!"
+          message="Success!"
           color="green"
           autoHideDuration="800"
         />

@@ -74,6 +74,17 @@ class DonationService {
     return null;
   }
 
+  static async resend(donationId) {
+    try {
+      const url = `${this.baseUrl}/resend/${donationId}?${new URLSearchParams({ access_token: TOKEN })}`
+      const response = await fetch(url, { method: "PUT" });
+      const result = await response.json();
+      return result;
+    } catch (err) {}
+
+    return null;
+  }
+
 }
 
 export default DonationService;
