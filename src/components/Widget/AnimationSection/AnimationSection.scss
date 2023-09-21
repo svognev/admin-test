@@ -1,0 +1,42 @@
+.animationSection {
+  display: flex;
+  height: 400px;
+  min-height: 400px;
+  max-height: 400px;
+  position: relative;
+
+  .animation {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+
+    img {
+      height: 400px;
+    }
+  }
+
+  .message {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 25px;
+    box-sizing: border-box;
+
+    .message-sum {
+      color: lemonchiffon;
+      text-shadow: black 1px 0 5px;
+      font-size: 34px;
+      margin: 0;
+    }
+
+    .message-author {
+      font-size: 25px;
+      color: white;
+      text-shadow: black 1px 0 5px;
+      margin: 0;
+    }
+  }
+}

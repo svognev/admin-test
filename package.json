@@ -1,7 +1,6 @@
 {
   "name": "donco-admin",
   "version": "0.1.0",
-  "homepage": "https://svognev.github.io/admin-test",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",
@@ -24,8 +23,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "predeploy": "npm run build"
   },
   "eslintConfig": {
     "extends": [
@@ -46,7 +44,6 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "gh-pages": "^5.0.0"
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }
 }

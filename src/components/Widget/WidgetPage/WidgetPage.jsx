@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import useWebSocket from "common/useWebSocket";
 
 import GoalLine from "components/Widget/GoalLine";
+import AnimationSection from "components/Widget/AnimationSection";
 
 import "./WidgetPage.scss";
 
@@ -48,8 +49,8 @@ export default function WidgetPage({ goal, updateGoal }) {
 
   return (
     <div className="widgetPage">
+      <AnimationSection donation={currentDonation} />
       <GoalLine title={goal.name} maxLimit={goal.max_limit} current={goal.current} />
-      { currentDonation  ? <h1>{`${currentDonation.amount_in_rub}, ${currentDonation.animation}`}</h1> : "" }
     </div>
   );
 }

@@ -3,8 +3,8 @@ import "./GoalLine.scss";
 export default function GoalLine({ title, maxLimit, current }) {
   const currentPercentage = Math.floor(current / maxLimit * 100);
   const currentIndicatorStyles = { width: `${currentPercentage}%` };
-  const formattedMaxLimit = new Intl.NumberFormat('ru-RU', { maximumSignificantDigits: 3 }).format(parseInt(maxLimit));
-  const formattedCurrent = new Intl.NumberFormat('ru-RU', { maximumSignificantDigits: 3 }).format(parseInt(current));
+  const formattedMaxLimit = new Intl.NumberFormat('ru-RU').format(parseInt(maxLimit));
+  const formattedCurrent = new Intl.NumberFormat('ru-RU').format(parseInt(current));
 
   return (
     <div className="goalLine">

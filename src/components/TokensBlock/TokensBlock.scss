@@ -1,0 +1,59 @@
+.tokenBlock {
+  display: flex;
+  min-width: 425px;
+  max-width: 500px;
+  flex-direction: column-reverse;
+  margin-top: 20px;
+
+  .tokenBlock-createButton {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 15px;
+    margin-left: 23px;
+  }
+
+  .tokenBlock-tokens {
+    .token {
+      background: #302e2e;
+      border-radius: 10px;
+      padding-left: 20px;
+      padding-right: 15px;
+      padding-top: 23px;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+
+      .token-title {
+        margin: 0;
+        color: #ffbb42;
+      }
+
+      .token-metadata {
+        display: flex;
+
+        .token-labels {
+          margin-right: 6px;
+          color: grey;
+        }
+
+        .token-values {
+          color: gainsboro;
+        }
+      }
+
+      .token-removeButton {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .tokenBlock {
+    min-width: 300px;
+  }
+}
