@@ -29,7 +29,7 @@ class RuleService {
         body: JSON.stringify(ruleData),
         headers: HEADERS,
       });
-      console.warn(112, response, await response.json());
+
       if (response.ok) {
         return response.ok;
       }

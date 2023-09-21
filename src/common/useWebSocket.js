@@ -4,7 +4,7 @@ import { WS_URL, TOKEN } from "constants/index";
 const useWebSocket = (route, onMessage) => {
   useEffect(() => {
     const ws = new WebSocket(`${WS_URL}/${route}?${new URLSearchParams({ access_token: TOKEN })}`);
-  
+
     ws.onopen = () => {
       console.log(`WS "${route}" connection established!`);
     };
@@ -25,7 +25,8 @@ const useWebSocket = (route, onMessage) => {
     return () => {
       ws.close();
     };
-  });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 };
 
 export default useWebSocket;
